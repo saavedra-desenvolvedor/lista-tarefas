@@ -1,0 +1,256 @@
+/* Estilo global e reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #0077b6;
+  color: #fff;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+h3 {
+  color: rgb(8, 130, 218);
+  margin-bottom: 5px;
+}
+
+main {
+  padding: 20px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
+}
+
+.task-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.task-input::placeholder {
+  color: #b0b0b0;
+}
+
+.task-input:focus {
+  border-color: #0077b6;
+  outline: none;
+}
+
+small {
+  color: #ff4d4d;
+  font-size: 12px;
+}
+
+.btn {    
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
+  position: relative; /* Ensure the button can contain positioned elements */
+}
+
+.btn-add {
+  background-color: #0077b6;
+  color: #fff;
+}
+
+.btn-add:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.btn-complete {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  /*background-color: #28a745; */
+  color: #000;
+}
+
+.btn-undo {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  /*background-color: #28a745; */
+  color: red;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;  
+  color: red;
+}
+
+.btn-edit {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;  
+  color: blue;
+}
+
+.btn-save {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;  
+  color: green;
+}
+
+.btn-cancel {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;  
+  color: red;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+}
+
+/* Animações */
+.icon-animation {
+  animation: none; /* Inicialmente sem animação */
+  transition: animation 0.5s ease-in-out;
+}
+
+.btn:hover .icon-animation {
+  animation: bounce 1s;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.task-item:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-info span {
+  font-size: 14px;
+}
+
+.task-info input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .task-info span {
+    font-size: 14px;
+  }
+}

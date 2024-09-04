@@ -1,0 +1,68 @@
+<div class="app-container">
+  <header>
+    <img src="/assets/tarefas.jpg" alt="Logomarca" class="logo">
+    <h1 class="title animated tada">{{ title }}</h1>
+  </header>
+  <main>
+    <form [formGroup]="form" class="task-form">
+      <fieldset>
+        <label for="title">Nova Tarefa:</label>
+        <input
+          type="text"
+          id="title"
+          placeholder="Título da tarefa"
+          maxlength="60"
+          formControlName="title"
+          class="task-input"
+        />
+        <small *ngIf="form.controls['title'].invalid && !form.controls['title'].pristine">
+          Este campo deve conter entre 03 e 60 caracteres
+        </small>
+        <button [disabled]="form.invalid" (click)="add()" class="btn btn-add">
+          <i class="fas fa-plus icon-animation"></i> Adicionar
+        </button>
+      </fieldset>
+    </form>
+
+    <ul class="task-list">
+      <p *ngIf="tarefas.length == 0"><small>Você ainda não tem nenhuma tarefa hoje!</small></p>
+      <h3> <i class="fas fa-check fa-sm icon-animation"></i> Lista de tarefas</h3>
+      <li *ngFor="let tarefa of tarefas; let i = index" class="task-item">
+        <div class="task-info">
+          <span *ngIf="!editMode[i]">{{ tarefa.id }}. {{ tarefa.title }}</span>
+          <input *ngIf="editMode[i]" [(ngModel)]="tarefa.title" />
+        </div>
+        <div class="task-actions">
+          <ng-container *ngIf="!editMode[i]">
+             <!--marcar -->
+            <button *ngIf="!tarefa.done" (click)="markAsDone(tarefa)" class="btn btn-complete">
+              <i class="fas fa-check fa-lg icon-animation"></i> 
+            </button>
+            <!--desmarcar -->
+            <button *ngIf="tarefa.done" (click)="markAsUnDone(tarefa)" class="btn btn-undo"> 
+              <i class="fas fa-xmark fa-lg icon-animation"></i> 
+            </button>
+            <!--excluir -->
+            <button (click)="remove(tarefa)" class="btn btn-remove">
+              <i class="fas fa-trash fa-lg icon-animation"></i> 
+            </button>
+             <!--editar -->
+            <button (click)="edit(tarefa)" class="btn btn-edit">
+              <i class="fas fa-edit fa-lg icon-animation"></i> 
+            </button>
+          </ng-container>
+          <ng-container *ngIf="editMode[i]">
+             <!--salvar edição -->
+            <button (click)="saveEdit(tarefa, tarefa.title)" class="btn btn-save">
+              <i class="fas fa-save fa-lg icon-animation"></i> 
+            </button>
+            <!--cancelar edição -->
+            <button (click)="cancelEdit(tarefa)" class="btn btn-cancel">
+              <i class="fas fa-times fa-lg icon-animation"></i> 
+            </button>
+          </ng-container>
+        </div>
+      </li>
+    </ul>
+  </main>
+</div>
