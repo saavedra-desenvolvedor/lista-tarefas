@@ -27,7 +27,7 @@
     <ul class="task-list">
       <p *ngIf="tarefas.length == 0"><small>Você ainda não tem nenhuma tarefa hoje!</small></p>
       <h3> <i class="fas fa-check fa-sm icon-animation"></i> Lista de tarefas</h3>
-      <li *ngFor="let tarefa of tarefas; let i = index" class="task-item">
+      <li *ngFor="let tarefa of tarefas; let i = index" class="task-item" [ngClass]="{ 'completed': tarefa.done }">
         <div class="task-info">
           <span *ngIf="!editMode[i]">{{ tarefa.id }}. {{ tarefa.title }}</span>
           <input *ngIf="editMode[i]" [(ngModel)]="tarefa.title" />
